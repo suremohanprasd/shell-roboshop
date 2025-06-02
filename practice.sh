@@ -1,6 +1,5 @@
 #!/bin/bash
 
+NAME=$( read )
 
-NAMES=("Mohan" "Prasad" "Sandeep" "Sumanth" "Sai")
-
-echo "First Name is : ${NAMES[0]}"
+echo "your name is : $NAME"
