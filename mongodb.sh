@@ -9,8 +9,7 @@ LOGS_FOLDER="/var/log/roboshop-logs"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)    # $0 -> have the script name
 mkdir -p $LOGS_FOLDER
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
-PACKAGES=("mysql" "python3" "nginx" "httpd")
-
+SCRIPT_DIR=$PWD
 
 echo "Script started executing at : $(date)" &>>$LOG_FILE
 
@@ -36,7 +35,7 @@ VALIDATE(){
     fi
 }
 
-cp mongodb.repo /etc/yum.repos.d/mongo.repo  &>>$LOG_FILE
+cp $SCRIPT_DIR/mongodb.repo /etc/yum.repos.d/mongo.repo  &>>$LOG_FILE
 VALIDATE $? "Copying Mongodb repo"
 
 dnf install mongodb-org -y  &>>$LOG_FILE
@@ -48,9 +47,9 @@ VALIDATE $? "Enabling Mongodb"
 systemctl start mongod  &>>$LOG_FILE
 VALIDATE $? "Starting Mongodb"
 
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf  &>>$LOG_FILE
 VALIDATE $? "Editing MongoDB conf file remote connections"
 
-systemctl restart mongod
+systemctl restart mongod  &>>$LOG_FILE
 VALIDATE $? "Restarting Mongodb"
 
