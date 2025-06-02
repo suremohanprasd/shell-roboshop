@@ -29,9 +29,9 @@ fi
 VALIDATE(){
     if [ $1 -eq 0 ]
     then
-        echo $G "Installing $2 is ... SUCCESS" $N | tee -a $LOG_FILE
+        echo $G "$2 is ... SUCCESS" $N | tee -a $LOG_FILE
     else
-        echo $R "Installing $2 is ... FAILURE" $N | tee -a $LOG_FILE
+        echo $R "$2 is ... FAILURE" $N | tee -a $LOG_FILE
         exit 1
     fi
 }
@@ -48,5 +48,9 @@ VALIDATE $? "Enabling Mongodb"
 systemctl start mongod  &>>$LOG_FILE
 VALIDATE $? "Starting Mongodb"
 
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+VALIDATE $? "Editing MongoDB conf file remote connections"
 
+systemctl restart mongod
+VALIDATE $? "Restarting Mongodb"
 
