@@ -1,9 +1,12 @@
 #!/bin/bash
 
-# Installation of MySQL
+# Installation of $PACKAGE1
 #  First we need to check wether we are running with root access
 
 USERID=$(id -u)
+PACKAGE1=mysql
+PACKAGE2=nginx
+PACKAGE3=httd
 
 if [ $USERID -ne 0 ]
 then
@@ -12,53 +15,53 @@ else
     echo "You are running with root access"
 fi
 
-dnf list installed mysql -y
+dnf list installed $PACKAGE1 -y
 
 if [ $? -ne 0 ]
 then
-    echo "MySQL is not installed please wait installing it..."
-    dnf install mysql -y
+    echo "$PACKAGE1 is not installed please wait installing it..."
+    dnf install $PACKAGE1 -y
     if [ $? -eq 0 ]
     then
-        echo "Installation of MySQL is Success..."
+        echo "Installation of $PACKAGE1 is Success..."
     else
-        echo "Installation of MySQL is Failed..."
+        echo "Installation of $PACKAGE1 is Failed..."
     exit 1
     fi
 else
-    echo "MySQL is already installed"
+    echo "$PACKAGE1 is already installed"
 fi
 
-dnf list installed nginx -y
+dnf list installed $PACKAGE2 -y
 
 if [ $? -ne 0 ]
 then
-    echo "nginx is not installed please wait installing it..."
-    dnf install mysql -y
+    echo "$PACKAGE2 is not installed please wait installing it..."
+    dnf install $PACKAGE2 -y
     if [ $? -eq 0 ]
     then
-        echo "Installation of Nginx is Success..."
+        echo "Installation of $PACKAGE2 is Success..."
     else
-        echo "Installation of Nginx is Failed..."
+        echo "Installation of $PACKAGE2 is Failed..."
     exit 1
     fi
 else
-    echo "Nginx is already installed"
+    echo "$PACKAGE2 is already installed"
 fi
 
-dnf list installed httd -y
+dnf list installed $PACKAGE3 -y
 
 if [ $? -ne 0 ]
 then
-    echo "httd is not installed please wait installing it..."
-    dnf install mysql -y
+    echo "$PACKAGE3 is not installed please wait installing it..."
+    dnf install $PACKAGE3 -y
     if [ $? -eq 0 ]
     then
-        echo "Installation of httd is Success..."
+        echo "Installation of $PACKAGE3 is Success..."
     else
-        echo "Installation of httd is Failed..."
+        echo "Installation of $PACKAGE3 is Failed..."
     exit 1
     fi
 else
-    echo "httd is already installed"
+    echo "$PACKAGE3 is already installed"
 fi
