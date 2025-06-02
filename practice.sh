@@ -9,9 +9,9 @@ read NUMBER3
 echo "Enter fouth number"
 read NUMBER4
 
-NUMBER=$("$NUMBER1" "$NUMBER2" "$NUMBER3" "$NUMBER4")
+# NUMBER=$("$NUMBER1" "$NUMBER2" "$NUMBER3" "$NUMBER4")
 
-if [ ${NUMBER[0]} lt 10]
+if [ $NUMBER1 lt 10]
 then
     echo "${NUMBER[0]} is less than 10"
 else
