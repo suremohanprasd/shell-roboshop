@@ -5,12 +5,13 @@
 
 USERID=$(id -u)
 
-if [ $USERID eq 0 ]
+if [ $USERID ne 0 ]
 then
-    echo "You are running with root access"
-else
     echo "Please run with root access"
-    exit 1
+else
+    echo "You are running with root access"
 fi
 
 dnf install mysql -y
+
+"You are running with root access"
