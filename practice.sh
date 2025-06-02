@@ -5,8 +5,8 @@
 
 USERID=$(id -u)
 
-if [ $USERID eq 0]
-than
+if [ $USERID eq 0 ]
+then
     echo "You are running with root access"
 else
     echo "Please run with root access"
