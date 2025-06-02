@@ -1,19 +1,13 @@
 #!/bin/bash
 
-echo "Enter first number"
-read NUMBER1
-echo "Enter second number"
-read NUMBER2
-echo "Enter third number"
-read NUMBER3
-echo "Enter fouth number"
-read NUMBER4
+# Installation of MySQL
+#  First we need to check wether we are running with root access
 
-# NUMBER=$("$NUMBER1" "$NUMBER2" "$NUMBER3" "$NUMBER4")
+USERID=$(id -u)
 
-if [ $NUMBER1 lt 10 ]
-then
-    echo "$NUMBER1 is less than 10"
+if [ $USERID eq 0]
+than
+    echo "You are running with root access"
 else
-    echo "$NUMBER1 is greater than 10"
+    echo "Please run with root access"
 fi
