@@ -10,6 +10,7 @@ then
     echo "You are running with root access"
 else
     echo "Please run with root access"
+    exit 1
 fi
 
 dnf install mysql -y
