@@ -1,6 +1,9 @@
 #!/bin/bash
 
-NUMBER=$1
+echo "Enter any number"
+
+read NUMBER
+
 if [ $NUMBER lt 10]
 then
     echo "$NUMBER is less than 10"
