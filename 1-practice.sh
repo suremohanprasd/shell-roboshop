@@ -12,6 +12,8 @@ G="-e \e[32m"
 Y="-e \e[33m"
 N="\e[0m"
 
+PACKAGES=("$PACKAGE1" "$PACKAGE2" "$PACKAGE3")
+ 
 LOGS_FOLDER="/var/log/shellscript-logs"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)    # $0 -> have the script name
 mkdir -p $LOGS_FOLDER
@@ -29,42 +31,15 @@ VALIDATE() {
     fi
 }
 
-if [ $USERID -ne 0 ]
-then
-    echo $R "Please run with root access" $N | tee -a $LOG_FILE
-else
-    echo $G "You are running with root access" $N | tee -a $LOG_FILE
-fi
-
-dnf list installed $PACKAGE1 -y
-
-if [ $? -ne 0 ]
-then
-    echo $R "$PACKAGE1 is not installed please wait installing it..." $N | tee -a $LOG_FILE
-    dnf install $PACKAGE1 -y &>>$LOG_FILE
-    VALIDATE $? "$PACKAGE1"
-else
-    echo $G "$PACKAGE1 is already installed" $N | tee -a $LOG_FILE
-fi
-
-dnf list installed $PACKAGE2 -y
-
-if [ $? -ne 0 ]
-then
-    echo $R "$PACKAGE2 is not installed please wait installing it..." $N | tee -a $LOG_FILE
-    dnf install $PACKAGE2 -y &>>$LOG_FILE
-    VALIDATE $? "$PACKAGE2"
-else
-    echo $G "$PACKAGE2 is already installed" $N | tee -a $LOG_FILE
-fi
-
-dnf list installed $PACKAGE3 -y
-
-if [ $? -ne 0 ]
-then
-    echo $R "$PACKAGE3 is not installed please wait installing it..." $N | tee -a $LOG_FILE
-    dnf install $PACKAGE3 -y &>>$LOG_FILE
-    VALIDATE $? "$PACKAGE3"
-else
-    echo $G "$PACKAGE3 is already installed" $N | tee -a $LOG_FILE
-fi
+for package in ${PACKAGES[@]}
+do
+   dnf list installed $package &>>$LOG_FILE
+   if [ $? -ne 0 ]
+   then
+       echo $R "$package is not installed... going to install it" $N | tee -a $LOG_FILE
+       dnf install $package -y &>>$LOG_FILE
+       VALIDATE $? "$package"
+    else
+       echo $G "$package is already installed...Nothing to do" $N | tee -a $LOG_FILE
+    fi
+done
