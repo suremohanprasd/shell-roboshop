@@ -2,7 +2,8 @@
 
 TIMESTAMP=$(date)
 
-echo "Script run at the time of : $TIMESTAMP
+echo "Script run at the time of : $TIMESTAMP"
+
 echo "Enter your pin"
 
 read -s PIN
