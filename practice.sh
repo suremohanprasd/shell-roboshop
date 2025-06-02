@@ -13,7 +13,7 @@ read NUMBER4
 
 if [ $NUMBER1 lt 10]
 then
-    echo "${NUMBER[0]} is less than 10"
+    echo "$NUMBER1 is less than 10"
 else
-    echo "${NUMBER[0]} is greater than 10"
+    echo "$NUMBER1 is greater than 10"
 fi
