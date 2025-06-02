@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TIMESTAMP=$(date)
+TIMESTAMP=$(time)
 
 echo "Script run at the time of : $TIMESTAMP"
 
