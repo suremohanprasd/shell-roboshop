@@ -18,6 +18,7 @@ if [ $? ne 0]
 then
     echo "MySQL is not installed please wait installing it..."
     dnf install mysql -y
+    exit 1
 else
     echo "MySQL is already installed"
 fi
