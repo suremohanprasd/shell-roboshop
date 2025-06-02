@@ -53,16 +53,16 @@ else
     echo "Already roboshop user  is exits, So $Y SKIPPING.... $N"
 if
 
-rm -rf /app/* &>>$LOG_FILE
 mkdir -p /app 
 VALIDATE $? "Creating app directory"
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$LOG_FILE
+
+rm -rf /app/*
 cd /app 
 unzip /tmp/catalogue.zip  &>>$LOG_FILE
 VALIDATE $? "Download the dependencies"
 
-cd /app 
 npm install  &>>$LOG_FILE
 VALIDATE $? "Installing npm"
 
@@ -78,7 +78,7 @@ VALIDATE $? "Enabling catalogue"
 systemctl start catalogue  &>>$LOG_FILE
 VALIDATE $? "Staring catalogue"
 
-cp $SCRIPT_DIR/mongodb.repo /etc/yum.repos.d/mongo.repo &>>$LOG_FILE
+cp $SCRIPT_DIR/mongodb.repo /etc/yum.repos.d/mongo.repo 
 VALIDATE $? "Installing MongoDB client file"
 
 dnf install mongodb-mongosh -y  &>>$LOG_FILE
