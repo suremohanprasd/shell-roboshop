@@ -12,11 +12,11 @@ G="-e \e[32m"
 Y="-e \e[33m"
 N="\e[0m"
 
-LOG_FILE="/var/log/shellscript-logs"
+LOGS_FOLDER="/var/log/shellscript-logs"
 SCRIPT_NAME=$(echo $0 | cut -d "." f1)    # $0 -> have the script name
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
-mkdir -p $LOGS_FOLDER
 
+mkdir -p $LOGS_FOLDER
 echo "Script started executing at : $(date)" &>>$LOG_FILE
 
 VALIDATE() {
