@@ -6,7 +6,7 @@
 USERID=$(id -u)
 PACKAGE1=mysql
 PACKAGE2=nginx
-PACKAGE3=httd
+PACKAGE3=httpd
 
 if [ $USERID -ne 0 ]
 then
