@@ -1,12 +1,10 @@
 #!/bin/bash
 
-echo "Enter any number"
+NUMBER=$("$1" "$2" "$3" "$4")
 
-read NUMBER
-
-if [ $NUMBER lt 10 ]
+if [ ${NUMBER[0]} lt 10]
 then
-    echo "$NUMBER is less than 10"
+    echo "${NUMBER[0]} is less than 10"
 else
-    echo "$NUMBER is greater than 10"
-fi
+    echo "${NUMBER[0]} is greater than 10"
+fi 
