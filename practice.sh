@@ -11,7 +11,7 @@ read NUMBER4
 
 # NUMBER=$("$NUMBER1" "$NUMBER2" "$NUMBER3" "$NUMBER4")
 
-if [ $NUMBER1 lt 10]
+if [ $NUMBER1 lt 10 ]
 then
     echo "$NUMBER1 is less than 10"
 else
