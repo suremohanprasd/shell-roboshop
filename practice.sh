@@ -7,6 +7,10 @@ USERID=$(id -u)
 PACKAGE1=mysql
 PACKAGE2=nginx
 PACKAGE3=httpd
+R=$(\e[31m)
+G=$(\e[32m)
+Y=$(\e[33m)
+N=$(\e[0m)
 
 VALIDATE() {
     if [ $1 -eq 0 ]
@@ -20,9 +24,9 @@ VALIDATE() {
 
 if [ $USERID -ne 0 ]
 then
-    echo "Please run with root access"
+    echo $R "Please run with root access" $N
 else
-    echo "You are running with root access"
+    echo $G "You are running with root access" $N
 fi
 
 dnf list installed $PACKAGE1 -y
