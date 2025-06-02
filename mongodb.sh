@@ -39,13 +39,13 @@ VALIDATE(){
 cp $SCRIPT_DIR/mongodb.sh /etc/yum.repos.d/mongo.repo  &>>$LOG_FILE
 
 dnf install mongodb-org -y &>>$LOG_FILE
-VALIDATE $1 "Installing Mongodb"
+VALIDATE $? "Installing Mongodb"
 
 systemctl enable mongod &>>$LOG_FILE
-VALIDATE $1 "Enabling Mongodb"
+VALIDATE $? "Enabling Mongodb"
 
 systemctl start mongod  &>>$LOG_FILE
-VALIDATE $1 "Starting Mongodb"
+VALIDATE $? "Starting Mongodb"
 
 
 
