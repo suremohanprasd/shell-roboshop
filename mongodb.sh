@@ -36,7 +36,7 @@ VALIDATE(){
     fi
 }
 
-cp $SCRIPT_DIR/mongodb.sh /etc/yum.repos.d/mongo.repo  &>>$LOG_FILE
+cp $SCRIPT_DIR/mongodb.repo /etc/yum.repos.d/mongo.repo  &>>$LOG_FILE
 
 dnf install mongodb-org -y &>>$LOG_FILE
 VALIDATE $? "Installing Mongodb"
