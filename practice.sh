@@ -8,6 +8,16 @@ PACKAGE1=mysql
 PACKAGE2=nginx
 PACKAGE3=httpd
 
+VALIDATE() {
+    if [ $1 -eq 0 ]
+    then
+        echo "Installation of $2 is Success..."
+    else
+        echo "Installation of $2 is Failed..."
+    exit 1
+    fi
+}
+
 if [ $USERID -ne 0 ]
 then
     echo "Please run with root access"
@@ -21,13 +31,7 @@ if [ $? -ne 0 ]
 then
     echo "$PACKAGE1 is not installed please wait installing it..."
     dnf install $PACKAGE1 -y
-    if [ $? -eq 0 ]
-    then
-        echo "Installation of $PACKAGE1 is Success..."
-    else
-        echo "Installation of $PACKAGE1 is Failed..."
-    exit 1
-    fi
+    VALIDATE $? "$PACKAGE1"
 else
     echo "$PACKAGE1 is already installed"
 fi
@@ -38,13 +42,7 @@ if [ $? -ne 0 ]
 then
     echo "$PACKAGE2 is not installed please wait installing it..."
     dnf install $PACKAGE2 -y
-    if [ $? -eq 0 ]
-    then
-        echo "Installation of $PACKAGE2 is Success..."
-    else
-        echo "Installation of $PACKAGE2 is Failed..."
-    exit 1
-    fi
+    VALIDATE $? "$PACKAGE2"
 else
     echo "$PACKAGE2 is already installed"
 fi
@@ -55,13 +53,7 @@ if [ $? -ne 0 ]
 then
     echo "$PACKAGE3 is not installed please wait installing it..."
     dnf install $PACKAGE3 -y
-    if [ $? -eq 0 ]
-    then
-        echo "Installation of $PACKAGE3 is Success..."
-    else
-        echo "Installation of $PACKAGE3 is Failed..."
-    exit 1
-    fi
+    VALIDATE $? "$PACKAGE3"
 else
     echo "$PACKAGE3 is already installed"
 fi
