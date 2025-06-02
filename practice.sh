@@ -7,10 +7,10 @@ USERID=$(id -u)
 PACKAGE1=mysql
 PACKAGE2=nginx
 PACKAGE3=httpd
-R=$(\e[31m)
-G=$(\e[32m)
-Y=$(\e[33m)
-N=$(\e[0m)
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
 
 VALIDATE() {
     if [ $1 -eq 0 ]
