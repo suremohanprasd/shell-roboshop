@@ -2,7 +2,7 @@
 
 TIMESTAMP=$(date)
 ENDTIME=$(date)
-TOTALTIME=$(($TIMESTAMP)-($ENDTIME))
+TOTALTIME=$($TIMESTAMP-$ENDTIME)
 
 echo "Script run at the time of : $TIMESTAMP"
 
