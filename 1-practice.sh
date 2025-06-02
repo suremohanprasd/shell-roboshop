@@ -14,9 +14,9 @@ N="\e[0m"
 
 LOGS_FOLDER="/var/log/shellscript-logs"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)    # $0 -> have the script name
+mkdir -p $LOGS_FOLDER
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 
-mkdir -p $LOGS_FOLDER
 echo "Script started executing at : $(date)" &>>$LOG_FILE
 
 VALIDATE() {
