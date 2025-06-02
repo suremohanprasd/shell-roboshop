@@ -24,9 +24,9 @@ VALIDATE() {
 
 if [ $USERID -ne 0 ]
 then
-    echo $R "Please run with root access" $N
+    echo -e $R "Please run with root access" $N
 else
-    echo $G "You are running with root access" $N
+    echo -e $G "You are running with root access" $N
 fi
 
 dnf list installed $PACKAGE1 -y
