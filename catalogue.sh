@@ -50,6 +50,16 @@ then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
     VALIDATE $? "Adding System user Roboshop"
 else
-    echo "System user Roboshop already Exits... $Y Skipping" $N
+    echo $Y "System user Roboshop already Exits... Skipping" $Name
 fi
+
+mkdir -p /app
+VALIDATE $? "Creating app directory"
+
+rm -rf /app/*
+
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+cd /app 
+unzip /tmp/catalogue.zip
+VALIDATE $? "Downloading dependencies"
 
