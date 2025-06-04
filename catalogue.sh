@@ -63,3 +63,19 @@ cd /app
 unzip /tmp/catalogue.zip
 VALIDATE $? "Downloading dependencies"
 
+cd /app 
+npm install
+VALIDATE $? "Installing NPM"
+
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service
+
+systemctl daemon-reload
+systemctl enable catalogue 
+systemctl start catalogue
+VALIDATE $? "Starting catalogue service"
+
+cp $SCRIPT_DIR/mongodb.repo /etc/yum.repos.d/mongo.repo
+VALIDATE $? "Copying mongodb repo"
+
+dnf install mongodb-mongosh -y
+VALIDATE $? "Installing MongoDB clinet"
