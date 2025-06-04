@@ -44,3 +44,12 @@ VALIDATE $? "Enabling nodejs:20"
 dnf install nodejs -y
 VALIDATE $? "Installing nodejs:20"
 
+id roboshop
+if [ $? -ne 0 ]
+then
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
+    VALIDATE $? "Adding System user Roboshop"
+else
+    echo "System user Roboshop already Exits... $Y Skipping $N"
+
+
