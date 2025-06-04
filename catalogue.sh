@@ -51,5 +51,5 @@ then
     VALIDATE $? "Adding System user Roboshop"
 else
     echo "System user Roboshop already Exits... $Y Skipping $N"
-
+fi
 
