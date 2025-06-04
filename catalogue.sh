@@ -50,7 +50,7 @@ then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
     VALIDATE $? "Adding System user Roboshop"
 else
-    echo $Y "System user Roboshop already Exits... Skipping" $Name
+    echo $Y "System user Roboshop already Exits... $Y Skipping $N"
 fi
 
 mkdir -p /app  &>>$LOG_FILE
