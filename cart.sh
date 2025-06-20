@@ -14,9 +14,9 @@ SCRIPT_DIR=$PWD
 echo "Script started executing at : $(date)" &>>$LOG_FILE
 
 
-cartID=$(id -u)
+USERID=$(id -u)
 
-if [ $cartID -ne 0 ]
+if [ $USERID -ne 0 ]
 then
     echo $R "ERROR:: Please run this script with root access" $N | tee -a $LOG_FILE
     exit 1 #give other than 0 upto 127
