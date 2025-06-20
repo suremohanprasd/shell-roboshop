@@ -48,7 +48,7 @@ else
 fi
 
 mkdir -p /app  &>>$LOG_FILE
-curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip 
+curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip  &>>$LOG_FILE
 cd /app 
 unzip /tmp/shipping.zip &>>$LOG_FILE
 VALIDATE $? "Installing dependencies"
@@ -60,7 +60,7 @@ VALIDATE $? "Packing the shipping Application"
 mv target/shipping-1.0.jar shipping.jar &>>$LOG_FILE
 VALIDATE $? "Moving and Renaming the jar file"
 
-cp $SCRIPT_DIR/shipping.service /etc/systemd/system/shipping.service
+cp $SCRIPT_DIR/shipping.service /etc/systemd/system/shipping.service &>>$LOG_FILE
 
 systemctl daemon-reload &>>$LOG_FILE
 VALIDATE $? "Daemon reload" 
