@@ -86,5 +86,5 @@ then
     mongosh --host mongodb.dontgiveup.space </app/db/master-data.js &>>$LOG_FILE
     VALIDATE $? "Loading data into MongoDB"
 else
-    echo "Data is already loaded ... "$Y SKIPPING $N""
+    echo $Y "Data is already loaded ... SKIPPING $N"
 fi
