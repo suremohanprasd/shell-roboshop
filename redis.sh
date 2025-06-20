@@ -45,7 +45,7 @@ dnf install redis -y &>>$LOG_FILE
 VALIDATE $? "Installing redis"
 
 
-sed -i -e 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf  &>>$LOG_FILE
+sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no' /etc/redis/redis.conf  &>>$LOG_FILE
 VALIDATE $? "Editing redis conf file remote connections"
 
 
