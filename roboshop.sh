@@ -2,7 +2,7 @@
 
 AMI_ID="ami-09c813fb71547fc4f"
 SG_ID="sg-0864893e7cbe3aa29"
-INSTANCES=("mongodb" "redis" "mysql" "rabbimq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "frontend")
+INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch" "frontend")
 ZONE_ID="Z01588863S3D3IK1JSJVW"
 DOMAIN_NAME="dontgiveup.space"
 
