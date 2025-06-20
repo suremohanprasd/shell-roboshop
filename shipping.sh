@@ -48,10 +48,15 @@ else
 fi
 
 mkdir -p /app  &>>$LOG_FILE
+VALIDATE $? "Creating app directory"
+
 curl -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip  &>>$LOG_FILE
+VALIDATE $? "Downlaoding Shipping"
+
+rm -rf /app/*
 cd /app 
 unzip /tmp/shipping.zip &>>$LOG_FILE
-VALIDATE $? "Installing dependencies"
+VALIDATE $? "unzipping shipping"
 
 cd /app 
 mvn clean package &>>$LOG_FILE
