@@ -47,10 +47,10 @@ VALIDATE $? "Installing nodejs:20"
 id roboshop &>>$LOG_FILE
 if [ $? -ne 0 ]
 then
-    cartadd --system --home /app --shell /sbin/nologin --comment "roboshop system cart" roboshop
-    VALIDATE $? "Adding System cart Roboshop"
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system cart" roboshop
+    VALIDATE $? "Adding System user Roboshop"
 else
-    echo $Y "System cart Roboshop already Exits... Skipping" $N
+    echo $Y "System user Roboshop already Exits... Skipping" $N
 fi
 
 mkdir -p /app  &>>$LOG_FILE
