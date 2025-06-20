@@ -48,7 +48,7 @@ else
 fi
 
 mkdir -p /app  &>>$LOG_FILE
-curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip  &>>$LOG_FILE
+curl -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip  &>>$LOG_FILE
 cd /app 
 unzip /tmp/shipping.zip &>>$LOG_FILE
 VALIDATE $? "Installing dependencies"
