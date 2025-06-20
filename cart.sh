@@ -14,9 +14,9 @@ SCRIPT_DIR=$PWD
 echo "Script started executing at : $(date)" &>>$LOG_FILE
 
 
-USERID=$(id -u)
+cartID=$(id -u)
 
-if [ $USERID -ne 0 ]
+if [ $cartID -ne 0 ]
 then
     echo $R "ERROR:: Please run this script with root access" $N | tee -a $LOG_FILE
     exit 1 #give other than 0 upto 127
@@ -47,10 +47,10 @@ VALIDATE $? "Installing nodejs:20"
 id roboshop &>>$LOG_FILE
 if [ $? -ne 0 ]
 then
-    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-    VALIDATE $? "Adding System user Roboshop"
+    cartadd --system --home /app --shell /sbin/nologin --comment "roboshop system cart" roboshop
+    VALIDATE $? "Adding System cart Roboshop"
 else
-    echo $Y "System user Roboshop already Exits... Skipping" $N
+    echo $Y "System cart Roboshop already Exits... Skipping" $N
 fi
 
 mkdir -p /app  &>>$LOG_FILE
@@ -58,33 +58,18 @@ VALIDATE $? "Creating app directory"
 
 rm -rf /app/*
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip  &>>$LOG_FILE
+curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip  &>>$LOG_FILE
 cd /app 
-unzip /tmp/catalogue.zip  &>>$LOG_FILE
+unzip /tmp/cart.zip  &>>$LOG_FILE
 VALIDATE $? "Downloading dependencies"
 
 cd /app 
 npm install &>>$LOG_FILE
 VALIDATE $? "Installing NPM"
 
-cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service &>>$LOG_FILE
+cp $SCRIPT_DIR/cart.service /etc/systemd/system/cart.service &>>$LOG_FILE
 
 systemctl daemon-reload &>>$LOG_FILE
-systemctl enable catalogue &>>$LOG_FILE
-systemctl start catalogue &>>$LOG_FILE
-VALIDATE $? "Starting catalogue service"
-
-cp $SCRIPT_DIR/mongodb.repo /etc/yum.repos.d/mongo.repo
-VALIDATE $? "Copying mongodb repo"
-
-dnf install mongodb-mongosh -y &>>$LOG_FILE
-VALIDATE $? "Installing MongoDB clinet"
-
-STATUS=$(mongosh --host mongodb.daws84s.site --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
-if [ $STATUS -lt 0 ]
-then
-    mongosh --host mongodb.daws84s.site </app/db/master-data.js &>>$LOG_FILE
-    VALIDATE $? "Loading data into MongoDB"
-else
-    echo -e "Data is already loaded ... $Y SKIPPING $N"
-fi
+systemctl enable cart &>>$LOG_FILE
+systemctl start cart &>>$LOG_FILE
+VALIDATE $? "Starting cart service"
