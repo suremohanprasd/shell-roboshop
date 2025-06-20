@@ -4,7 +4,7 @@ Description=Shipping Service
 [Service]
 User=roboshop
 // highlight-start
-Environment=CART_ENDPOINT=cart.dontgiveup.spcae:8080
+Environment=CART_ENDPOINT=cart.dontgiveup.space:8080
 Environment=DB_HOST=mysql.dontgiveup.space
 // highlight-end
 ExecStart=/bin/java -jar /app/shipping.jar
